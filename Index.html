@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ReveSiA</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .business-name {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .user-info {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #3a3a3a;
+        }
+        
+        .user-greeting {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #A78BFA;
+        }
+        
+        .user-id {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .menu-button {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .menu-button:hover {
+            background: #3a3a3a;
+            border-color: #8B5CF6;
+            transform: translateX(5px);
+        }
+        
+        .menu-button:active {
+            background: #8B5CF6;
+            border-color: #8B5CF6;
+            transform: scale(0.98);
+        }
+        
+        .button-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .button-text {
+            flex: 1;
+        }
+        
+        .button-arrow {
+            color: #8B5CF6;
+            font-size: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-placeholder">RV</div>
+        <div class="business-name">ReveSiA</div>
+    </div>
+    
+    <div class="user-info">
+        <div class="user-greeting" id="userGreeting">👤 Cargando...</div>
+        <div class="user-id" id="userId">Obteniendo información...</div>
+    </div>
+    
+    <div class="buttons-container">
+        <button class="menu-button" onclick="sendCommand('/reporte')">
+            <span class="button-icon">📊</span>
+            <span class="button-text">Reporte De Ventas</span>
+            <span class="button-arrow">›</span>
+        </button>
+        
+        <button class="menu-button" onclick="sendCommand('/vender')">
+            <span class="button-icon">💰</span>
+            <span class="button-text">Vendido</span>
+            <span class="button-arrow">›</span>
+        </button>
+        
+        <button class="menu-button" onclick="sendCommand('/actualizar')">
+            <span class="button-icon">📦</span>
+            <span class="button-text">Actualizar Inventario</span>
+            <span class="button-arrow">›</span>
+        </button>
+        
+        <button class="menu-button" onclick="sendCommand('/ajustar')">
+            <span class="button-icon">💲</span>
+            <span class="button-text">Ajustar Precio</span>
+            <span class="button-arrow">›</span>
+        </button>
+        
+        <button class="menu-button" onclick="sendCommand('/catalogo')">
+            <span class="button-icon">📖</span>
+            <span class="button-text">Catálogo</span>
+            <span class="button-arrow">›</span>
+        </button>
+        
+        <button class="menu-button" onclick="sendCommand('/ayuda')">
+            <span class="button-icon">❓</span>
+            <span class="button-text">Ayuda</span>
+            <span class="button-arrow">›</span>
+        </button>
+    </div>
+    
+    <div class="footer">
+        Powered by ReveSiA • n8n
+    </div>
+
+    <script>
+        // Inicializar Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Obtener datos del usuario
+        const user = tg.initDataUnsafe.user;
+        
+        if (user) {
+            // Personalizar con datos del usuario
+            const greeting = `👤 Bienvenido ${user.first_name}${user.last_name ? ' ' + user.last_name : ''}`;
+            document.getElementById('userGreeting').textContent = greeting;
+            document.getElementById('userId').textContent = `ID: ${user.id}`;
+        } else {
+            document.getElementById('userGreeting').textContent = '👤 Bienvenido Usuario';
+            document.getElementById('userId').textContent = 'Sesión no detectada';
+        }
+        
+        // Aplicar colores del tema de Telegram
+        document.body.style.backgroundColor = tg.themeParams.bg_color || '#1a1a1a';
+        document.body.style.color = tg.themeParams.text_color || '#ffffff';
+        
+        // Función para enviar comando
+        function sendCommand(command) {
+            // Cerrar la Mini App y enviar el comando al chat
+            tg.sendData(command);
+            tg.close();
+        }
+    </script>
+</body>
+</html>
