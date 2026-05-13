@@ -668,4 +668,552 @@
 
         .btn-telegram:hover {
             background: #0077b5;
-          
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--cambur-green);
+            border: 2px solid var(--cambur-green);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover { background: rgba(124, 179, 66, 0.1); }
+
+        /* ============================================================
+           🎵 BOTÓN PEDIR CANCIÓN
+           ============================================================ */
+        .request-section { text-align: center; padding: 30px; }
+
+        .btn-request {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #7CB342, #558B2F);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+        }
+
+        .btn-request:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.5);
+        }
+
+        /* ============================================================
+           📱 BOTÓN FLOTANTE WHATSAPP
+           ============================================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 999;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse-wa 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ============================================================
+           📱 FOOTER
+           ============================================================ */
+        footer {
+            text-align: center;
+            padding: 30px 20px 40px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        footer strong { color: #FFFFFF; }
+
+        /* ============================================================
+           📱 RESPONSIVE
+           ============================================================ */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 30px;
+                min-height: auto;
+            }
+            .hero-right { order: -1; }
+            .modelo-img { max-width: 250px; }
+            .station-name { font-size: 32px; }
+            .top-bar { padding: 0 12px; }
+            .social-icons { gap: 10px; }
+            .social-icons a { font-size: 14px; }
+            .venezuela-time { font-size: 11px; }
+            .hero-player {
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 25px;
+                padding: 10px 20px;
+            }
+            .np-title { max-width: 150px; font-size: 12px; }
+            .history-section { padding: 30px 15px; }
+            .history-timeline { padding-left: 40px; }
+            .history-emoji { left: -24px; font-size: 18px; }
+            .history-item:first-child .history-emoji { font-size: 24px; }
+            .news-section { padding: 30px 15px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    📱 BARRA SUPERIOR
+    ============================================================ -->
+    <div class="top-bar">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/camburpinton.fm" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@camburpintonfm" target="_blank" rel="noopener" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1CsVgaN7dh/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://kick.com/camburpintonfm" target="_blank" rel="noopener" title="Kick"><i class="fab fa-kickstarter-k"></i></a>
+            <a href="https://www.twitch.tv/camburpintonfm" target="_blank" rel="noopener" title="Twitch"><i class="fab fa-twitch"></i></a>
+            <a href="https://youtube.com/@camburpintonfm" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.threads.com/camburpinton.fm" target="_blank" rel="noopener" title="Threads"><i class="fab fa-threads"></i></a>
+            <a href="https://bsky.app/profile/camburpinton.bsky.social" target="_blank" rel="noopener" title="BlueSky"><i class="fa-solid fa-cloud"></i></a>
+        </div>
+        <div class="venezuela-time">
+            <span class="flag">🇻🇪</span>
+            <span>Venezuela:</span>
+            <span class="time" id="venezuelaTime">--:-- --</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    📰 BARRA DE TITULARES (RSS VENEZOLANO)
+    ============================================================ -->
+    <div class="ticker-bar">
+        <div class="ticker-content" id="tickerContent">
+            <span class="ticker-label">📰 NOTICIAS VENEZUELA</span> Cargando titulares...
+        </div>
+    </div>
+
+    <!-- ============================================================
+    🏠 HERO
+    ============================================================ -->
+    <header class="hero">
+        <div class="hero-left">
+            <img src="https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png" alt="Cambur Pintón" class="logo-img">
+            <h1 class="station-name">Cambur Pintón</h1>
+            <p class="tagline">🎙️ La Radio Más Chevere de Venezuela 🎙️</p>
+            <p class="hero-subtitle">🎸 Con El Cuatro Bien Afinado</p>
+            
+            <div class="hero-player">
+                <button class="player-btn" id="playBtn" onclick="togglePlay()">▶</button>
+                <div class="live-indicator">
+                    <div class="live-dot"></div> EN VIVO
+                </div>
+                <div class="now-playing-hero">
+                    <div class="np-title" id="npTitle">Cambur Pintón</div>
+                    <div class="np-artist" id="npArtist">Sintonizando</div>
+                </div>
+                <div class="strings-container" id="stringsContainer">
+                    <div class="string s1" style="height:8px"></div>
+                    <div class="string s2" style="height:8px"></div>
+                    <div class="string s3" style="height:8px"></div>
+                    <div class="string s4" style="height:8px"></div>
+                </div>
+            </div>
+            
+            <div class="listeners-badge">
+                👥 <span class="listeners-count" id="listenersCount">0</span> oyentes escuchando ahora
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <img src="https://raw.githubusercontent.com/ElShaman32/CamburPinton/main/foto.png" alt="Modelo Cambur Pintón" class="modelo-img" id="modeloImg" onerror="this.style.display='none'">
+        </div>
+    </header>
+
+    <!-- ============================================================
+    🎵 HISTORIAL
+    ============================================================ -->
+    <section class="history-section">
+        <h2 class="history-title">🍌 Lo Que Ya Maduró</h2>
+        <div class="history-timeline" id="historyTimeline">
+            <p class="history-placeholder">Cargando historial de canciones...</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🎵 PEDIR CANCIÓN
+    ============================================================ -->
+    <div class="request-section">
+        <button class="btn-request" onclick="openRequestModal()">📋 Pedir Canción</button>
+    </div>
+
+    <!-- ============================================================
+    📋 MODAL PEDIR CANCIÓN
+    ============================================================ -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <h3>📋 Pedir Canción</h3>
+            <p>Escribe qué canción quieres escuchar</p>
+            <input type="text" id="songRequestInput" placeholder="Nombre de la canción...">
+            <input type="text" id="artistRequestInput" placeholder="Artista (opcional)">
+            <div class="modal-buttons">
+                <button class="btn-modal btn-send" onclick="submitSongRequest()">Enviar Pedido 🎵</button>
+                <button class="btn-modal btn-cancel" onclick="closeRequestModal()">Cancelar</button>
+            </div>
+            <div class="modal-confirmation" id="requestConfirmation">✅ ¡Pedido enviado! Sonará pronto 🍌</div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    💬 COMUNIDAD
+    ============================================================ -->
+    <section class="community-section">
+        <h2 class="section-title" style="margin-bottom:5px;">💬 Únete a la Comunidad</h2>
+        <p class="section-subtitle">El cambur se disfruta en racimo</p>
+        <div class="community-buttons">
+            <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Grupo WhatsApp
+            </a>
+            <a href="https://t.me/Camburpintonbot" target="_blank" rel="noopener" class="btn-telegram">
+                <i class="fab fa-telegram-plane"></i> Telegram
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb6k5tyI7BeB51lYSc1y" target="_blank" rel="noopener" class="btn-outline">
+                <i class="fab fa-whatsapp"></i> Canal WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    📰 NOTICIAS PINTONAS
+    ============================================================ -->
+    <section class="news-section">
+        <h2 class="section-title">📰 Noticias Pintonas</h2>
+        <p class="section-subtitle">Las noticias más frescas del cambur</p>
+        
+        <div class="news-grid" id="newsContainer">
+            <p class="news-placeholder">🍌 Pronto tendremos noticias pintonas...</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    📱 FOOTER
+    ============================================================ -->
+    <footer>
+        <strong>Leonel Sira</strong> & <strong>Yennyfer Reverol</strong>
+    </footer>
+
+    <!-- ============================================================
+    💬 BOTÓN FLOTANTE WHATSAPP
+    ============================================================ -->
+    <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="whatsapp-float" title="Únete al grupo de WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ============================================================
+    🧠 SCRIPTS
+    ============================================================ -->
+    <script>
+        // ─── CONFIGURACIÓN ───
+        const STREAM_URL = 'https://radio.camburpinton.com.ve/listen/cambur_pinton/radio.mp3';
+        const API_URL = 'https://radio.camburpinton.com.ve/api/nowplaying/cambur_pinton';
+        const API_KEY = '0aebf59628850e87:30b9574cf088d2e1bd100a8c96e87e98';
+        const NEWS_URL = 'https://raw.githubusercontent.com/ElShaman32/SiReBa/main/noticias.json';
+
+        // ─── ELEMENTOS ───
+        const playBtn = document.getElementById('playBtn');
+        const npTitle = document.getElementById('npTitle');
+        const npArtist = document.getElementById('npArtist');
+        const stringsContainer = document.getElementById('stringsContainer');
+        const listenersCount = document.getElementById('listenersCount');
+        const historyTimeline = document.getElementById('historyTimeline');
+        const pageTitle = document.getElementById('pageTitle');
+        const tickerContent = document.getElementById('tickerContent');
+        const requestModal = document.getElementById('requestModal');
+
+        // ─── AUDIO ───
+        let audio = null;
+        let isPlaying = false;
+        let stringsInterval = null;
+        let nowPlayingInterval = null;
+        let titleInterval = null;
+        let dotVisible = true;
+
+        function togglePlay() {
+            if (isPlaying) { pauseAudio(); } else { playAudio(); }
+        }
+
+        function playAudio() {
+            if (!audio) {
+                audio = new Audio(STREAM_URL);
+                audio.volume = 0.8;
+                audio.preload = 'auto';
+                audio.onerror = () => { isPlaying = false; updateButton(); stopStrings(); stopTitleEffect(); };
+            }
+            audio.play().then(() => {
+                isPlaying = true;
+                updateButton();
+                startStrings();
+                startTitleEffect();
+            }).catch(() => { isPlaying = false; updateButton(); });
+        }
+
+        function pauseAudio() {
+            if (audio) { audio.pause(); audio.src = ''; audio = null; }
+            isPlaying = false;
+            updateButton();
+            stopStrings();
+            stopTitleEffect();
+        }
+
+        function updateButton() {
+            if (isPlaying) {
+                playBtn.textContent = '⏸';
+                playBtn.classList.add('playing');
+            } else {
+                playBtn.textContent = '▶';
+                playBtn.classList.remove('playing');
+            }
+        }
+
+        // ─── EFECTO AL AIRE EN PESTAÑA ───
+        function startTitleEffect() {
+            stopTitleEffect();
+            titleInterval = setInterval(() => {
+                dotVisible = !dotVisible;
+                pageTitle.textContent = dotVisible ? '🟢 EN VIVO - Cambur Pintón' : '🍌 Cambur Pintón';
+            }, 1500);
+        }
+
+        function stopTitleEffect() {
+            if (titleInterval) { clearInterval(titleInterval); titleInterval = null; }
+            pageTitle.textContent = '🍌 Cambur Pintón';
+        }
+
+        // ─── CUERDAS ───
+        function startStrings() {
+            stopStrings();
+            stringsInterval = setInterval(() => {
+                document.querySelectorAll('#stringsContainer .string').forEach(s => {
+                    s.style.height = (Math.random() * 16 + 4) + 'px';
+                });
+            }, 100);
+        }
+
+        function stopStrings() {
+            if (stringsInterval) { clearInterval(stringsInterval); stringsInterval = null; }
+            document.querySelectorAll('#stringsContainer .string').forEach(s => s.style.height = '5px');
+        }
+
+        // ─── API NOW PLAYING + OYENTES + HISTORIAL ───
+        async function fetchNowPlaying() {
+            try {
+                const response = await fetch(API_URL, {
+                    headers: { 'Authorization': 'Basic ' + btoa(API_KEY) }
+                });
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+                updateNowPlaying(data);
+                updateListeners(data);
+                updateHistory(data);
+            } catch (err) {
+                console.error('Error API:', err);
+            }
+        }
+
+        function updateNowPlaying(data) {
+            if (data && data.now_playing && data.now_playing.song) {
+                npTitle.textContent = data.now_playing.song.title || 'Música en vivo';
+                npArtist.textContent = data.now_playing.song.artist || 'Cambur Pintón';
+            }
+        }
+
+        function updateListeners(data) {
+            if (data && data.listeners) {
+                listenersCount.textContent = data.listeners.unique || data.listeners.current || 0;
+            }
+        }
+
+        function updateHistory(data) {
+            if (data && data.song_history && data.song_history.length > 0) {
+                const history = data.song_history.slice(0, 5);
+                historyTimeline.innerHTML = history.map((entry, index) => {
+                    const song = entry.song;
+                    const minutesAgo = Math.floor((Date.now() / 1000 - entry.played_at) / 60);
+                    let timeText;
+                    if (minutesAgo < 1) timeText = 'Maduró hace unos segundos';
+                    else if (minutesAgo === 1) timeText = 'Maduró hace 1 minuto';
+                    else if (minutesAgo < 60) timeText = `Maduró hace ${minutesAgo} minutos`;
+                    else timeText = 'Maduró hace más de 1 hora';
+                    const emoji = index === 0 ? '🍌' : '🎵';
+                    return `
+                        <div class="history-item">
+                            <span class="history-emoji">${emoji}</span>
+                            <div class="history-card">
+                                <div class="history-song">${song.title || 'Canción desconocida'}</div>
+                                <div class="history-artist">${song.artist || 'Artista desconocido'}</div>
+                                <div class="history-time">${timeText}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        nowPlayingInterval = setInterval(fetchNowPlaying, 15000);
+        fetchNowPlaying();
+
+        // ─── MODAL PEDIR CANCIÓN ───
+        function openRequestModal() {
+            requestModal.classList.add('active');
+            document.getElementById('songRequestInput').value = '';
+            document.getElementById('artistRequestInput').value = '';
+            document.getElementById('requestConfirmation').style.display = 'none';
+        }
+
+        function closeRequestModal() {
+            requestModal.classList.remove('active');
+        }
+
+        function submitSongRequest() {
+            const song = document.getElementById('songRequestInput').value.trim();
+            const artist = document.getElementById('artistRequestInput').value.trim();
+            
+            if (!song) {
+                document.getElementById('songRequestInput').style.borderColor = '#FF6B6B';
+                setTimeout(() => { document.getElementById('songRequestInput').style.borderColor = ''; }, 2000);
+                return;
+            }
+            
+            // Enviar a AzuraCast vía API
+            const formData = new FormData();
+            formData.append('request', song);
+            if (artist) formData.append('artist', artist);
+            
+            fetch('https://radio.camburpinton.com.ve/api/station/cambur_pinton/request', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + btoa(API_KEY)
+                },
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('requestConfirmation').style.display = 'block';
+                    setTimeout(closeRequestModal, 2500);
+                }
+            }).catch(() => {
+                // Si falla, abrimos la página de AzuraCast como respaldo
+                window.open('https://radio.camburpinton.com.ve/embed/request/cambur_pinton', '_blank');
+                closeRequestModal();
+            });
+        }
+
+        // Cerrar modal al hacer clic fuera
+        requestModal.addEventListener('click', (e) => {
+            if (e.target === requestModal) closeRequestModal();
+        });
+
+        // ─── TITULARES VENEZUELA (RSS) ───
+        async function loadTickers() {
+            try {
+                const response = await fetch('https://rss.app/feeds/v1.1/tYTPZx6N8DfBdLsH.json');
+                if (!response.ok) throw new Error('No disponible');
+                const data = await response.json();
+                
+                if (data && data.items && data.items.length > 0) {
+                    const titulares = data.items.slice(0, 10);
+                    tickerContent.innerHTML = '<span class="ticker-label">📰 NOTICIAS VENEZUELA</span>' + 
+                        titulares.map(item => 
+                            `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>`
+                        ).join(' <span class="separator">•</span> ');
+                }
+            } catch (err) {
+                console.log('Titulares no disponibles, usando respaldo.');
+                tickerContent.innerHTML = '<span class="ticker-label">📰 NOTICIAS VENEZUELA</span>' +
+                    '<a href="https://www.elnacional.com" target="_blank">Visita ElNacional.com</a> <span class="separator">•</span> ' +
+                    '<a href="https://www.eluniversal.com" target="_blank">El Universal</a> <span class="separator">•</span> ' +
+                    '<a href="https://www.talcualdigital.com" target="_blank">Tal Cual</a>';
+            }
+        }
+
+        loadTickers();
+
+        // ─── NOTICIAS PINTONAS DESDE GITHUB ───
+        async function loadNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            try {
+                const response = await fetch(NEWS_URL);
+                if (!response.ok) throw new Error('No disponible');
+                const data = await response.json();
+                
+                if (data && data.noticias && data.noticias.length > 0) {
+                    const fecha = data.actualizado || 'Reciente';
+                    newsContainer.innerHTML = `
+                        <div class="news-update-time" style="grid-column:1/-1;">📅 ${fecha}</div>
+                        ${data.noticias.map(item => `
+                            <div class="news-card">
+                                <div class="news-category">${item.categoria}</div>
+                                <div class="news-title">${item.titulo}</div>
+                                <div class="news-excerpt">${item.resumen}</div>
+                            </div>
+                        `).join('')}
+                    `;
+                }
+            } catch (err) {
+                console.log('Noticias pintonas no disponibles aún.');
+            }
+        }
+
+        loadNews();
+
+        // ─── HORA VENEZUELA ───
+        function updateVenezuelaTime() {
+            const now = new Date();
+            document.getElementById('venezuelaTime').textContent = 
+                now.toLocaleTimeString('es-VE', { timeZone: 'America/Caracas', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+        }
+
+        updateVenezuelaTime();
+        setInterval(updateVenezuelaTime, 1000);
+
+        console.log('🍌 Cambur Pintón - Web completa');
+    </script>
+</body>
+</html>
