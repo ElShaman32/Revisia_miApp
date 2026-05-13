@@ -12,7 +12,6 @@
     
     <title id="pageTitle">🍌 Cambur Pintón</title>
     
-    <!-- Font Awesome para iconos de redes sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -41,7 +40,7 @@
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
-            padding-top: 46px; /* Espacio para la barra superior */
+            padding-top: 46px;
         }
 
         /* ============================================================
@@ -92,17 +91,11 @@
             font-size: 13px;
         }
 
-        .venezuela-time .flag {
-            font-size: 18px;
-        }
-
-        .venezuela-time .time {
-            color: #FFFFFF;
-            letter-spacing: 1px;
-        }
+        .venezuela-time .flag { font-size: 18px; }
+        .venezuela-time .time { color: #FFFFFF; letter-spacing: 1px; }
 
         /* ============================================================
-           📰 BARRA DE TITULARES DESLIZANTE
+           📰 BARRA DE TITULARES DESLIZANTE (RSS VENEZOLANO)
            ============================================================ */
         .ticker-bar {
             background: rgba(124, 179, 66, 0.1);
@@ -118,21 +111,23 @@
             font-size: 13px;
         }
 
-        .ticker-bar a:hover {
-            color: #FFFFFF;
-            text-decoration: underline;
-        }
+        .ticker-bar a:hover { color: #FFFFFF; text-decoration: underline; }
 
         .ticker-content {
             display: inline-block;
-            animation: ticker 60s linear infinite;
+            animation: ticker 80s linear infinite;
             padding-left: 100%;
         }
 
-        .ticker-content span {
-            margin-right: 40px;
+        .ticker-content span.separator {
+            margin: 0 15px;
+            color: var(--cambur-green);
+        }
+
+        .ticker-label {
             color: var(--cambur-green);
             font-weight: 700;
+            margin-right: 20px;
         }
 
         @keyframes ticker {
@@ -159,10 +154,7 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png');
             background-repeat: repeat;
             background-size: 80px;
@@ -229,7 +221,6 @@
             margin-bottom: 30px;
         }
 
-        /* Player en el Hero */
         .hero-player {
             background: var(--surface);
             border: 2px solid var(--cambur-green);
@@ -257,10 +248,7 @@
             flex-shrink: 0;
         }
 
-        .player-btn:hover {
-            background: rgba(124, 179, 66, 0.2);
-            transform: scale(1.05);
-        }
+        .player-btn:hover { background: rgba(124, 179, 66, 0.2); transform: scale(1.05); }
 
         .player-btn.playing {
             border-color: var(--cambur-yellow);
@@ -293,9 +281,7 @@
             50% { opacity: 0.3; }
         }
 
-        .now-playing-hero {
-            text-align: left;
-        }
+        .now-playing-hero { text-align: left; }
 
         .np-title {
             font-size: 14px;
@@ -306,10 +292,7 @@
             text-overflow: ellipsis;
         }
 
-        .np-artist {
-            font-size: 11px;
-            color: var(--text-secondary);
-        }
+        .np-artist { font-size: 11px; color: var(--text-secondary); }
 
         .strings-container {
             display: flex;
@@ -318,18 +301,12 @@
             align-items: flex-end;
         }
 
-        .string {
-            width: 2px;
-            border-radius: 1px;
-            transition: height 0.1s;
-        }
-
+        .string { width: 2px; border-radius: 1px; transition: height 0.1s; }
         .s1 { background: var(--string1); }
         .s2 { background: var(--string2); }
         .s3 { background: var(--string3); }
         .s4 { background: var(--string4); }
 
-        /* Foto de la modelo */
         .modelo-img {
             width: 100%;
             max-width: 400px;
@@ -341,11 +318,8 @@
             transition: transform 0.3s;
         }
 
-        .modelo-img:hover {
-            transform: scale(1.02);
-        }
+        .modelo-img:hover { transform: scale(1.02); }
 
-        /* Oyentes en vivo */
         .listeners-badge {
             display: inline-block;
             margin-top: 12px;
@@ -357,13 +331,10 @@
             color: var(--cambur-green);
         }
 
-        .listeners-count {
-            font-weight: 700;
-            color: #FFFFFF;
-        }
+        .listeners-count { font-weight: 700; color: #FFFFFF; }
 
         /* ============================================================
-           🎵 HISTORIAL DE CANCIONES - LO QUE YA MADURÓ
+           🎵 HISTORIAL - LO QUE YA MADURÓ
            ============================================================ */
         .history-section {
             padding: 40px;
@@ -394,7 +365,6 @@
             padding-left: 50px;
         }
 
-        /* Las 4 cuerdas de fondo */
         .history-timeline::before {
             content: '';
             position: absolute;
@@ -404,24 +374,15 @@
             width: 16px;
             background: repeating-linear-gradient(
                 to bottom,
-                transparent,
-                transparent 2px,
-                var(--string4) 2px,
-                var(--string4) 3px,
-                transparent 3px,
-                transparent 6px,
-                var(--string3) 6px,
-                var(--string3) 7px,
-                transparent 7px,
-                transparent 10px,
-                var(--string2) 10px,
-                var(--string2) 11px,
-                transparent 11px,
-                transparent 14px,
-                var(--string1) 14px,
-                var(--string1) 15px,
-                transparent 15px,
-                transparent 20px
+                transparent, transparent 2px,
+                var(--string4) 2px, var(--string4) 3px,
+                transparent 3px, transparent 6px,
+                var(--string3) 6px, var(--string3) 7px,
+                transparent 7px, transparent 10px,
+                var(--string2) 10px, var(--string2) 11px,
+                transparent 11px, transparent 14px,
+                var(--string1) 14px, var(--string1) 15px,
+                transparent 15px, transparent 20px
             );
             opacity: 0.15;
             border-radius: 8px;
@@ -436,7 +397,6 @@
             cursor: default;
         }
 
-        /* Mini cambur en la línea de tiempo */
         .history-emoji {
             position: absolute;
             left: -29px;
@@ -476,34 +436,93 @@
             border-color: rgba(124, 179, 66, 0.5);
         }
 
-        .history-song {
-            font-size: 15px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 4px;
+        .history-song { font-size: 15px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px; }
+        .history-artist { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+        .history-time { font-size: 11px; color: var(--cambur-green); font-style: italic; }
+        .history-placeholder { text-align: center; color: var(--text-secondary); font-style: italic; padding: 30px; }
+
+        /* ============================================================
+           🎵 MODAL PEDIR CANCIÓN
+           ============================================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
         }
 
-        .history-artist {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
+        .modal-overlay.active { display: flex; }
 
-        .history-time {
-            font-size: 11px;
-            color: var(--cambur-green);
-            font-style: italic;
-        }
-
-        .history-placeholder {
-            text-align: center;
-            color: var(--text-secondary);
-            font-style: italic;
+        .modal {
+            background: var(--surface);
+            border: 2px solid var(--cambur-green);
+            border-radius: var(--radius);
             padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal h3 { margin-bottom: 10px; font-size: 20px; }
+        .modal p { color: var(--text-secondary); font-size: 13px; margin-bottom: 20px; }
+
+        .modal input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 25px;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            color: #FFFFFF;
+            font-size: 14px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        .modal input:focus { border-color: var(--cambur-green); }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-modal {
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-send {
+            background: var(--cambur-green);
+            color: #FFFFFF;
+        }
+        .btn-send:hover { background: #689F38; }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .btn-cancel:hover { background: rgba(255, 255, 255, 0.05); }
+
+        .modal-confirmation {
+            display: none;
+            color: var(--cambur-green);
+            font-weight: 700;
+            margin-top: 15px;
         }
 
         /* ============================================================
-           📰 NOTICIAS
+           📰 NOTICIAS PINTONAS
            ============================================================ */
         .news-section {
             padding: 40px;
@@ -517,6 +536,16 @@
             text-align: center;
             margin-bottom: 10px;
             color: #FFFFFF;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #7CB342;
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
 
         .section-subtitle {
@@ -584,7 +613,7 @@
         }
 
         /* ============================================================
-           💬 SECCIÓN COMUNIDAD
+           💬 COMUNIDAD
            ============================================================ */
         .community-section {
             padding: 40px;
@@ -622,536 +651,21 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
         }
 
-        .btn-outline {
+        .btn-telegram {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 14px 28px;
-            background: transparent;
-            color: var(--cambur-green);
-            border: 2px solid var(--cambur-green);
+            background: #0088cc;
+            color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 15px;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
         }
 
-        .btn-outline:hover {
-            background: rgba(124, 179, 66, 0.1);
-        }
-
-        /* ============================================================
-           🎵 BOTÓN PEDIR CANCIÓN
-           ============================================================ */
-        .request-section {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .btn-request {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #7CB342, #558B2F);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
-        }
-
-        .btn-request:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.5);
-        }
-
-        /* ============================================================
-           📱 BOTÓN FLOTANTE DE WHATSAPP
-           ============================================================ */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            z-index: 999;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            animation: pulse-wa 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-            animation: none;
-        }
-
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* ============================================================
-           📱 FOOTER
-           ============================================================ */
-        footer {
-            text-align: center;
-            padding: 30px 20px 40px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            border-top: 1px solid var(--border);
-        }
-
-        footer strong {
-            color: #FFFFFF;
-        }
-
-        /* ============================================================
-           📱 RESPONSIVE
-           ============================================================ */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                padding: 30px 20px;
-                gap: 30px;
-                min-height: auto;
-            }
-
-            .hero-right { order: -1; }
-            .modelo-img { max-width: 250px; }
-            .station-name { font-size: 32px; }
-            .top-bar { padding: 0 12px; }
-            .social-icons { gap: 10px; }
-            .social-icons a { font-size: 14px; }
-            .venezuela-time { font-size: 11px; }
-
-            .hero-player {
-                flex-wrap: wrap;
-                justify-content: center;
-                border-radius: 25px;
-                padding: 10px 20px;
-            }
-
-            .np-title { max-width: 150px; font-size: 12px; }
-            .history-section { padding: 30px 15px; }
-            .history-timeline { padding-left: 40px; }
-            .history-emoji { left: -24px; font-size: 18px; }
-            .history-item:first-child .history-emoji { font-size: 24px; }
-            .news-section { padding: 30px 15px; }
-            .news-grid { grid-template-columns: 1fr; }
-            .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ============================================================
-    📱 BARRA SUPERIOR - REDES SOCIALES + HORA VENEZUELA
-    ============================================================ -->
-    <div class="top-bar">
-        <div class="social-icons">
-            <a href="https://www.instagram.com/camburpinton.fm" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@camburpintonfm" target="_blank" rel="noopener" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.facebook.com/share/1CsVgaN7dh/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://kick.com/camburpintonfm" target="_blank" rel="noopener" title="Kick"><i class="fab fa-kickstarter-k"></i></a>
-            <a href="https://www.twitch.tv/camburpintonfm" target="_blank" rel="noopener" title="Twitch"><i class="fab fa-twitch"></i></a>
-            <a href="https://youtube.com/@camburpintonfm" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.threads.com/camburpinton.fm" target="_blank" rel="noopener" title="Threads"><i class="fab fa-threads"></i></a>
-            <a href="https://bsky.app/profile/camburpinton.bsky.social" target="_blank" rel="noopener" title="BlueSky"><i class="fa-solid fa-cloud"></i></a>
-        </div>
-        <div class="venezuela-time">
-            <span class="flag">🇻🇪</span>
-            <span>Venezuela:</span>
-            <span class="time" id="venezuelaTime">--:-- --</span>
-        </div>
-    </div>
-
-    <!-- ============================================================
-    📰 BARRA DE TITULARES DESLIZANTE
-    ============================================================ -->
-    <div class="ticker-bar">
-        <div class="ticker-content" id="tickerContent">
-            <span>📰 ÚLTIMA HORA</span> Cargando titulares...
-        </div>
-    </div>
-
-    <!-- ============================================================
-    🏠 HERO - DOS COLUMNAS
-    ============================================================ -->
-    <header class="hero">
-        <div class="hero-left">
-            <img src="https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png" alt="Cambur Pintón" class="logo-img">
-            <h1 class="station-name">Cambur Pintón</h1>
-            <p class="tagline">🎙️ La Radio Más Chevere de Venezuela 🎙️</p>
-            <p class="hero-subtitle">🎸 Con El Cuatro Bien Afinado</p>
-            
-            <div class="hero-player">
-                <button class="player-btn" id="playBtn" onclick="togglePlay()">▶</button>
-                <div class="live-indicator">
-                    <div class="live-dot"></div> EN VIVO
-                </div>
-                <div class="now-playing-hero">
-                    <div class="np-title" id="npTitle">Cambur Pintón</div>
-                    <div class="np-artist" id="npArtist">Sintonizando</div>
-                </div>
-                <div class="strings-container" id="stringsContainer">
-                    <div class="string s1" style="height:8px"></div>
-                    <div class="string s2" style="height:8px"></div>
-                    <div class="string s3" style="height:8px"></div>
-                    <div class="string s4" style="height:8px"></div>
-                </div>
-            </div>
-            
-            <div class="listeners-badge">
-                👥 <span class="listeners-count" id="listenersCount">0</span> oyentes escuchando ahora
-            </div>
-        </div>
-
-        <div class="hero-right">
-            <img src="https://raw.githubusercontent.com/ElShaman32/CamburPinton/main/foto.png" alt="Modelo Cambur Pintón" class="modelo-img" id="modeloImg" onerror="this.style.display='none'">
-        </div>
-    </header>
-
-    <!-- ============================================================
-    🎵 HISTORIAL DE CANCIONES - LO QUE YA MADURÓ
-    ============================================================ -->
-    <section class="history-section">
-        <h2 class="history-title">🍌 Lo Que Ya Maduró</h2>
-        <div class="history-timeline" id="historyTimeline">
-            <p class="history-placeholder">Cargando historial de canciones...</p>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    🎵 BOTÓN PEDIR CANCIÓN
-    ============================================================ -->
-    <div class="request-section">
-        <button class="btn-request" onclick="requestSong()">
-            📋 Pedir Canción
-        </button>
-    </div>
-
-    <!-- ============================================================
-    💬 COMUNIDAD
-    ============================================================ -->
-    <section class="community-section">
-        <h2 class="section-title" style="margin-bottom:5px;">💬 Únete a la Comunidad</h2>
-        <p class="section-subtitle">El cambur se disfruta en racimo</p>
-        <div class="community-buttons">
-            <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> Grupo WhatsApp
-            </a>
-            <a href="https://whatsapp.com/channel/0029Vb6k5tyI7BeB51lYSc1y" target="_blank" rel="noopener" class="btn-outline">
-                <i class="fab fa-whatsapp"></i> Canal WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    📰 NOTICIAS
-    ============================================================ -->
-    <section class="news-section">
-        <h2 class="section-title">📰 Noticias</h2>
-        <p class="section-subtitle">Automatizadas con IA para mantenerte al día</p>
-        
-        <div class="news-grid" id="newsContainer">
-            <p class="news-placeholder">🍌 Pronto tendremos noticias frescas...</p>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    📱 FOOTER
-    ============================================================ -->
-    <footer>
-        <strong>Leonel Sira</strong> & <strong>Yennyfer Reverol</strong>
-    </footer>
-
-    <!-- ============================================================
-    💬 BOTÓN FLOTANTE DE WHATSAPP
-    ============================================================ -->
-    <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="whatsapp-float" title="Únete al grupo de WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- ============================================================
-    🧠 SCRIPTS
-    ============================================================ -->
-    <script>
-        // ─── CONFIGURACIÓN ───
-        const STREAM_URL = 'https://radio.camburpinton.com.ve/listen/cambur_pinton/radio.mp3';
-        const API_URL = 'https://radio.camburpinton.com.ve/api/nowplaying/cambur_pinton';
-        const API_KEY = '0aebf59628850e87:30b9574cf088d2e1bd100a8c96e87e98';
-        const NEWS_URL = 'https://raw.githubusercontent.com/ElShaman32/SiReBa/main/noticias.json';
-
-        // ─── ELEMENTOS ───
-        const playBtn = document.getElementById('playBtn');
-        const npTitle = document.getElementById('npTitle');
-        const npArtist = document.getElementById('npArtist');
-        const stringsContainer = document.getElementById('stringsContainer');
-        const listenersCount = document.getElementById('listenersCount');
-        const historyTimeline = document.getElementById('historyTimeline');
-        const pageTitle = document.getElementById('pageTitle');
-        const tickerContent = document.getElementById('tickerContent');
-
-        // ─── AUDIO ───
-        let audio = null;
-        let isPlaying = false;
-        let stringsInterval = null;
-        let nowPlayingInterval = null;
-        let titleInterval = null;
-        let dotVisible = true;
-
-        function togglePlay() {
-            if (isPlaying) {
-                pauseAudio();
-            } else {
-                playAudio();
-            }
-        }
-
-        function playAudio() {
-            if (!audio) {
-                audio = new Audio(STREAM_URL);
-                audio.volume = 0.8;
-                audio.preload = 'auto';
-                audio.onerror = () => {
-                    isPlaying = false;
-                    updateButton();
-                    stopStrings();
-                    stopTitleEffect();
-                };
-            }
-            audio.play().then(() => {
-                isPlaying = true;
-                updateButton();
-                startStrings();
-                startTitleEffect();
-            }).catch(err => {
-                console.error('Error al reproducir:', err);
-                isPlaying = false;
-                updateButton();
-            });
-        }
-
-        function pauseAudio() {
-            if (audio) {
-                audio.pause();
-                audio.src = '';
-                audio = null;
-            }
-            isPlaying = false;
-            updateButton();
-            stopStrings();
-            stopTitleEffect();
-        }
-
-        function updateButton() {
-            if (isPlaying) {
-                playBtn.textContent = '⏸';
-                playBtn.classList.add('playing');
-            } else {
-                playBtn.textContent = '▶';
-                playBtn.classList.remove('playing');
-            }
-        }
-
-        // ─── EFECTO "AL AIRE" EN LA PESTAÑA ───
-        function startTitleEffect() {
-            stopTitleEffect();
-            titleInterval = setInterval(() => {
-                dotVisible = !dotVisible;
-                pageTitle.textContent = dotVisible ? '🟢 EN VIVO - Cambur Pintón' : '🍌 Cambur Pintón';
-            }, 1500);
-        }
-
-        function stopTitleEffect() {
-            if (titleInterval) {
-                clearInterval(titleInterval);
-                titleInterval = null;
-            }
-            pageTitle.textContent = '🍌 Cambur Pintón';
-        }
-
-        // ─── CUERDAS ANIMADAS ───
-        function startStrings() {
-            stopStrings();
-            stringsInterval = setInterval(() => {
-                const strings = stringsContainer.querySelectorAll('.string');
-                strings.forEach(s => {
-                    const h = Math.random() * 16 + 4;
-                    s.style.height = h + 'px';
-                });
-            }, 100);
-        }
-
-        function stopStrings() {
-            if (stringsInterval) {
-                clearInterval(stringsInterval);
-                stringsInterval = null;
-            }
-            const strings = stringsContainer.querySelectorAll('.string');
-            strings.forEach(s => s.style.height = '5px');
-        }
-
-        // ─── API: NOW PLAYING + OYENTES + HISTORIAL ───
-        async function fetchNowPlaying() {
-            try {
-                const response = await fetch(API_URL, {
-                    headers: { 'Authorization': 'Basic ' + btoa(API_KEY) }
-                });
-                if (!response.ok) throw new Error('API error');
-                const data = await response.json();
-                updateNowPlaying(data);
-                updateListeners(data);
-                updateHistory(data);
-            } catch (err) {
-                console.error('Error fetching now playing:', err);
-                npTitle.textContent = 'Cambur Pintón';
-                npArtist.textContent = 'Sintoniza en vivo';
-            }
-        }
-
-        function updateNowPlaying(data) {
-            if (data && data.now_playing && data.now_playing.song) {
-                const song = data.now_playing.song;
-                npTitle.textContent = song.title || 'Música en vivo';
-                npArtist.textContent = song.artist || 'Cambur Pintón';
-            }
-        }
-
-        function updateListeners(data) {
-            if (data && data.listeners) {
-                listenersCount.textContent = data.listeners.unique || data.listeners.current || 0;
-            }
-        }
-
-        function updateHistory(data) {
-            if (data && data.song_history && data.song_history.length > 0) {
-                const history = data.song_history.slice(0, 5);
-                historyTimeline.innerHTML = history.map((entry, index) => {
-                    const song = entry.song;
-                    const minutesAgo = Math.floor((Date.now() / 1000 - entry.played_at) / 60);
-                    let timeText;
-                    if (minutesAgo < 1) timeText = 'Maduró hace unos segundos';
-                    else if (minutesAgo === 1) timeText = 'Maduró hace 1 minuto';
-                    else if (minutesAgo < 60) timeText = `Maduró hace ${minutesAgo} minutos`;
-                    else timeText = 'Maduró hace más de 1 hora';
-                    
-                    const emoji = index === 0 ? '🍌' : '🎵';
-                    
-                    return `
-                        <div class="history-item">
-                            <span class="history-emoji">${emoji}</span>
-                            <div class="history-card">
-                                <div class="history-song">${song.title || 'Canción desconocida'}</div>
-                                <div class="history-artist">${song.artist || 'Artista desconocido'}</div>
-                                <div class="history-time">${timeText}</div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-        }
-
-        nowPlayingInterval = setInterval(fetchNowPlaying, 15000);
-        fetchNowPlaying();
-
-        // ─── PEDIR CANCIÓN ───
-        function requestSong() {
-            const requestUrl = 'https://radio.camburpinton.com.ve/embed/request/cambur_pinton';
-            window.open(requestUrl, '_blank', 'width=500,height=600');
-        }
-
-        // ─── NOTICIAS DESDE GITHUB ───
-        async function loadNews() {
-            const newsContainer = document.getElementById('newsContainer');
-            try {
-                const response = await fetch(NEWS_URL);
-                if (!response.ok) throw new Error('No disponible');
-                const data = await response.json();
-                
-                if (data && data.noticias && data.noticias.length > 0) {
-                    const fecha = data.actualizado || 'Reciente';
-                    
-                    newsContainer.innerHTML = `
-                        <div class="news-update-time" style="grid-column:1/-1;">📅 ${fecha}</div>
-                        ${data.noticias.map(item => `
-                            <div class="news-card">
-                                <div class="news-category">${item.categoria}</div>
-                                <div class="news-title">${item.titulo}</div>
-                                <div class="news-excerpt">${item.resumen}</div>
-                            </div>
-                        `).join('')}
-                    `;
-                }
-            } catch (err) {
-                console.log('Noticias no disponibles aún.');
-            }
-        }
-
-        loadNews();
-
-        // ─── TITULARES DE VENEZUELA (RSS El Nacional vía API pública) ───
-        async function loadTickers() {
-            try {
-                // Feed RSS de El Nacional (público, no requiere API key)
-                const response = await fetch('https://rss.app/feeds/v1.1/tYTPZx6N8DfBdLsH.json');
-                if (!response.ok) throw new Error('No disponible');
-                const data = await response.json();
-                
-                if (data && data.items && data.items.length > 0) {
-                    const titulares = data.items.slice(0, 8);
-                    tickerContent.innerHTML = '<span>📰 ÚLTIMA HORA</span> ' + 
-                        titulares.map(item => 
-                            `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>`
-                        ).join(' <span style="color:#7CB342;margin:0 10px;">•</span> ');
-                }
-            } catch (err) {
-                console.log('Titulares no disponibles, intentando fuente alternativa...');
-                // Plan B: titulares de muestra
-                tickerContent.innerHTML = '<span>📰 CAMBUR PINTÓN</span> ' +
-                    '<span style="color:#A5D6A7;">Escucha la radio más chevere de Venezuela • Con El Cuatro Bien Afinado • 24/7 Música Venezolana</span>';
-            }
-        }
-
-        loadTickers();
-
-        // ─── HORA DE VENEZUELA ───
-        function updateVenezuelaTime() {
-            const now = new Date();
-            const options = {
-                timeZone: 'America/Caracas',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
-            document.getElementById('venezuelaTime').textContent = 
-                now.toLocaleTimeString('es-VE', options);
-        }
-
-        updateVenezuelaTime();
-        setInterval(updateVenezuelaTime, 1000);
-
-        console.log('🍌 Cambur Pintón - Web completa lista');
-        console.log('📻 Stream:', STREAM_URL);
-        console.log('📰 Noticias desde GitHub');
-    </script>
-</body>
-</html>
+        .btn-telegram:hover {
+            background: #0077b5;
+          
