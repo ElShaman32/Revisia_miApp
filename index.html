@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1A1A2E">
-    <meta name="description" content="Cambur Pintón - La Radio Más Chevere de Venezuela. Música venezolana en todos los géneros, 24/7.">
+    <meta name="theme-color" content="#0D2818">
+    <meta name="description" content="Cambur Pintón - La Radio Más Chevere de Venezuela. Con El Cuatro Bien Afinado.">
     <meta property="og:title" content="Cambur Pintón - La Radio Más Chevere de Venezuela">
-    <meta property="og:description" content="80% música venezolana, 20% internacional. ¡El cambur está maduro y listo para sonar!">
-    <meta property="og:image" content="https://radio.camburpinton.com.ve/logo_radio.png">
+    <meta property="og:description" content="Con El Cuatro Bien Afinado.">
+    <meta property="og:image" content="https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png">
     <meta property="og:type" content="music.radio_station">
-    <title>🍌 Cambur Pintón - La Radio Más Chevere de Venezuela</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <title id="pageTitle">🍌 Cambur Pintón</title>
+    
+    <!-- Font Awesome para iconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
             --bg: #1A1A2E;
             --surface: #16213E;
             --cambur-yellow: #FFD700;
             --cambur-green: #7CB342;
-            --coral: #FF6B6B;
-            --wood-dark: #5D3A1A;
-            --wood-light: #8B5E3C;
+            --cambur-dark: #0D2818;
             --text: #FFFFFF;
-            --text-secondary: #B8B8D0;
-            --border: rgba(255, 255, 255, 0.1);
+            --text-secondary: #A5D6A7;
+            --border: rgba(124, 179, 66, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --radius: 16px;
             --string1: #FFD700;
             --string2: #FF8C00;
             --string3: #FF4500;
             --string4: #8B0000;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --radius: 16px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -44,37 +41,216 @@
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
-            overflow-x: hidden;
+            padding-top: 46px; /* Espacio para la barra superior */
         }
 
-        /* ─── PLAYER FLOTANTE ─── */
-        .player-bar {
+        /* ============================================================
+           📱 BARRA SUPERIOR - REDES SOCIALES + HORA VENEZUELA
+           ============================================================ */
+        .top-bar {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            background: var(--surface);
-            border-top: 2px solid var(--cambur-yellow);
-            padding: 12px 20px;
+            height: 46px;
+            background: rgba(13, 40, 24, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(124, 179, 66, 0.3);
             display: flex;
             align-items: center;
-            gap: 15px;
-            z-index: 1000;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
-            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1001;
+            font-size: 13px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: var(--cambur-green);
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--cambur-yellow);
+            transform: translateY(-2px);
+            filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.4));
+        }
+
+        .venezuela-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .venezuela-time .flag {
+            font-size: 18px;
+        }
+
+        .venezuela-time .time {
+            color: #FFFFFF;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================================
+           📰 BARRA DE TITULARES DESLIZANTE
+           ============================================================ */
+        .ticker-bar {
+            background: rgba(124, 179, 66, 0.1);
+            border-bottom: 1px solid rgba(124, 179, 66, 0.2);
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-bar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .ticker-bar a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 60s linear infinite;
+            padding-left: 100%;
+        }
+
+        .ticker-content span {
+            margin-right: 40px;
+            color: var(--cambur-green);
+            font-weight: 700;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ============================================================
+           🏠 HERO - DOS COLUMNAS
+           ============================================================ */
+        .hero {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            padding: 60px 40px;
+            background: linear-gradient(180deg, #0D2818 0%, #1A1A2E 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png');
+            background-repeat: repeat;
+            background-size: 80px;
+            opacity: 0.03;
+        }
+
+        .hero-left {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-width: 280px;
+            max-width: 450px;
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-width: 280px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 150px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(124, 179, 66, 0.5));
+            animation: float 3s ease-in-out infinite;
+            border-radius: 50%;
+            border: 3px solid rgba(124, 179, 66, 0.3);
+            background: rgba(13, 40, 24, 0.6);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .station-name {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #7CB342, #558B2F, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #A5D6A7;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: #A5D6A7;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* Player en el Hero */
+        .hero-player {
+            background: var(--surface);
+            border: 2px solid var(--cambur-green);
+            border-radius: 50px;
+            padding: 12px 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .player-btn {
-            width: 50px;
-            height: 50px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            border: 3px solid var(--coral);
-            background: rgba(255, 107, 107, 0.1);
-            color: var(--coral);
-            font-size: 22px;
+            border: 2px solid var(--cambur-green);
+            background: rgba(124, 179, 66, 0.1);
+            color: var(--cambur-green);
+            font-size: 20px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -82,7 +258,7 @@
         }
 
         .player-btn:hover {
-            background: rgba(255, 107, 107, 0.2);
+            background: rgba(124, 179, 66, 0.2);
             transform: scale(1.05);
         }
 
@@ -96,10 +272,10 @@
         .live-indicator {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             font-size: 11px;
             font-weight: bold;
-            color: var(--coral);
+            color: var(--cambur-green);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -107,46 +283,37 @@
         .live-dot {
             width: 8px;
             height: 8px;
-            background: var(--coral);
+            background: var(--cambur-green);
             border-radius: 50%;
             animation: blink 1s infinite;
         }
 
         @keyframes blink {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
-        .now-playing-info {
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
+        .now-playing-hero {
+            text-align: left;
         }
 
-        .now-playing-title {
-            font-size: 13px;
+        .np-title {
+            font-size: 14px;
             font-weight: 600;
+            max-width: 250px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 250px;
-            margin: 0 auto;
         }
 
-        .now-playing-artist {
+        .np-artist {
             font-size: 11px;
             color: var(--text-secondary);
         }
 
-        /* ─── STRINGS ANIMATION ─── */
         .strings-container {
             display: flex;
-            gap: 3px;
+            gap: 2px;
             height: 20px;
             align-items: flex-end;
         }
@@ -157,463 +324,598 @@
             transition: height 0.1s;
         }
 
-        .string-1 {
-            background: var(--string1);
-        }
-        .string-2 {
-            background: var(--string2);
-        }
-        .string-3 {
-            background: var(--string3);
-        }
-        .string-4 {
-            background: var(--string4);
-        }
+        .s1 { background: var(--string1); }
+        .s2 { background: var(--string2); }
+        .s3 { background: var(--string3); }
+        .s4 { background: var(--string4); }
 
-        /* ─── HERO ─── */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 100px;
-        }
-
-        .logo-container {
-            cursor: pointer;
-            user-select: none;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-
-        .logo-container:active {
-            transform: scale(0.95);
-        }
-
-        .logo-img {
-            width: 180px;
+        /* Foto de la modelo */
+        .modelo-img {
+            width: 100%;
+            max-width: 400px;
             height: auto;
-            max-width: 100%;
-            filter: drop-shadow(0 8px 24px rgba(255, 215, 0, 0.3));
-            animation: float 3s ease-in-out infinite;
+            border-radius: 24px;
+            border: 3px solid rgba(124, 179, 66, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            filter: brightness(0.9) saturate(1.1);
+            transition: transform 0.3s;
         }
 
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .modelo-img:hover {
+            transform: scale(1.02);
         }
 
-        .station-name {
-            font-size: 42px;
-            font-weight: 900;
-            margin: 20px 0 10px;
-            background: linear-gradient(45deg, var(--cambur-yellow), var(--cambur-green), var(--coral));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
+        /* Oyentes en vivo */
+        .listeners-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 16px;
+            background: rgba(124, 179, 66, 0.15);
+            border: 1px solid rgba(124, 179, 66, 0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--cambur-green);
         }
 
-        .tagline {
-            font-size: 18px;
-            color: var(--text-secondary);
+        .listeners-count {
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        /* ============================================================
+           🎵 HISTORIAL DE CANCIONES - LO QUE YA MADURÓ
+           ============================================================ */
+        .history-section {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .history-title {
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
             margin-bottom: 30px;
+            color: #FFFFFF;
+        }
+
+        .history-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #7CB342;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .history-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        /* Las 4 cuerdas de fondo */
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 2px,
+                var(--string4) 2px,
+                var(--string4) 3px,
+                transparent 3px,
+                transparent 6px,
+                var(--string3) 6px,
+                var(--string3) 7px,
+                transparent 7px,
+                transparent 10px,
+                var(--string2) 10px,
+                var(--string2) 11px,
+                transparent 11px,
+                transparent 14px,
+                var(--string1) 14px,
+                var(--string1) 15px,
+                transparent 15px,
+                transparent 20px
+            );
+            opacity: 0.15;
+            border-radius: 8px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            cursor: default;
+        }
+
+        /* Mini cambur en la línea de tiempo */
+        .history-emoji {
+            position: absolute;
+            left: -29px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .history-item:first-child .history-emoji {
+            font-size: 28px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .history-item:not(:first-child) .history-emoji {
+            filter: drop-shadow(0 0 5px rgba(124, 179, 66, 0.3));
+        }
+
+        .history-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            flex: 1;
+            transition: all 0.3s;
+        }
+
+        .history-item:first-child .history-card {
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .history-card:hover {
+            background: rgba(22, 33, 62, 0.8);
+            border-color: rgba(124, 179, 66, 0.5);
+        }
+
+        .history-song {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .history-artist {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .history-time {
+            font-size: 11px;
+            color: var(--cambur-green);
             font-style: italic;
         }
 
-        .btn-primary {
-            display: inline-block;
-            padding: 16px 40px;
-            background: var(--coral);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        .history-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 30px;
         }
 
-        .btn-primary:hover {
-            background: #ff5252;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-        }
-
-        /* ─── SECCIONES ─── */
-        section {
-            padding: 50px 20px;
-            max-width: 900px;
-            margin: 0 auto 30px;
+        /* ============================================================
+           📰 NOTICIAS
+           ============================================================ */
+        .news-section {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .section-title {
             font-size: 28px;
             font-weight: 800;
             text-align: center;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
             margin-bottom: 30px;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--cambur-yellow);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .news-update-time {
+            text-align: center;
+            font-size: 12px;
+            color: #7CB342;
+            margin-bottom: 20px;
         }
 
-        /* ─── NOW PLAYING CARD ─── */
-        .now-playing-card {
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .album-art {
-            width: 150px;
-            height: 150px;
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-category {
+            font-size: 12px;
+            color: var(--cambur-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .news-excerpt {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .news-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================
+           💬 SECCIÓN COMUNIDAD
+           ============================================================ */
+        .community-section {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .community-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background: #20BD5C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--cambur-green);
+            border: 2px solid var(--cambur-green);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(124, 179, 66, 0.1);
+        }
+
+        /* ============================================================
+           🎵 BOTÓN PEDIR CANCIÓN
+           ============================================================ */
+        .request-section {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .btn-request {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #7CB342, #558B2F);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+        }
+
+        .btn-request:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.5);
+        }
+
+        /* ============================================================
+           📱 BOTÓN FLOTANTE DE WHATSAPP
+           ============================================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--cambur-yellow), var(--coral));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            animation: spin 10s linear infinite;
-            animation-play-state: paused;
-            border: 3px solid var(--cambur-yellow);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .album-art.spinning {
-            animation-play-state: running;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .song-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .song-artist {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-action {
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text);
+            font-size: 28px;
+            z-index: 999;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             cursor: pointer;
-            transition: var(--transition);
-            font-size: 14px;
-        }
-
-        .btn-action:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* ─── PROGRAMACIóN ─── */
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .schedule-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .schedule-day {
-            font-weight: 700;
-            color: var(--cambur-yellow);
-            font-size: 16px;
-        }
-
-        .schedule-show {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-top: 5px;
-        }
-
-        .schedule-time {
-            font-size: 12px;
-            color: var(--coral);
-            font-weight: 600;
-        }
-
-        /* ─── COMUNIDAD ─── */
-        .community-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 30px;
-            text-align: center;
-        }
-
-        .telegram-embed {
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border);
-            height: 400px;
-            width: 100%;
-        }
-
-        /* ─── CONECTA ─── */
-        .social-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            padding: 12px 25px;
-            border-radius: 25px;
-            border: 2px solid var(--cambur-yellow);
-            background: transparent;
-            color: var(--cambur-yellow);
-            cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             text-decoration: none;
-            font-weight: 600;
+            animation: pulse-wa 2s infinite;
         }
 
-        .social-btn:hover {
-            background: var(--cambur-yellow);
-            color: var(--bg);
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            animation: none;
         }
 
-        /* ─── TOAST EASTER EGG ─── */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--cambur-yellow);
-            color: var(--bg);
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 700;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        .toast.show {
-            opacity: 1;
-        }
-
-        /* ─── FOOTER ─── */
+        /* ============================================================
+           📱 FOOTER
+           ============================================================ */
         footer {
             text-align: center;
-            padding: 30px 20px 120px;
+            padding: 30px 20px 40px;
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: 14px;
+            border-top: 1px solid var(--border);
         }
 
-        footer a {
-            color: var(--cambur-yellow);
-            text-decoration: none;
+        footer strong {
+            color: #FFFFFF;
         }
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 600px) {
-            .station-name {
-                font-size: 28px;
-            }
-            .player-bar {
-                padding: 10px;
-                gap: 8px;
-            }
-            .now-playing-title {
-                max-width: 150px;
-                font-size: 11px;
-            }
-            .logo-img {
-                width: 120px;
-            }
+        /* ============================================================
+           📱 RESPONSIVE
+           ============================================================ */
+        @media (max-width: 768px) {
             .hero {
-                padding: 40px 15px 80px;
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 30px;
+                min-height: auto;
             }
-            section {
-                padding: 30px 15px;
-            }
-        }
 
-        /* ─── MODO CLARO (opcional, se detecta del sistema) ─── */
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg: #FFF8E7;
-                --surface: #FFFFFF;
-                --text: #1A1A2E;
-                --text-secondary: #5D5D7A;
-                --border: rgba(0, 0, 0, 0.1);
+            .hero-right { order: -1; }
+            .modelo-img { max-width: 250px; }
+            .station-name { font-size: 32px; }
+            .top-bar { padding: 0 12px; }
+            .social-icons { gap: 10px; }
+            .social-icons a { font-size: 14px; }
+            .venezuela-time { font-size: 11px; }
+
+            .hero-player {
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 25px;
+                padding: 10px 20px;
             }
-            .player-bar {
-                border-top-color: var(--wood-dark);
-            }
+
+            .np-title { max-width: 150px; font-size: 12px; }
+            .history-section { padding: 30px 15px; }
+            .history-timeline { padding-left: 40px; }
+            .history-emoji { left: -24px; font-size: 18px; }
+            .history-item:first-child .history-emoji { font-size: 24px; }
+            .news-section { padding: 30px 15px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 24px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOAST EASTER EGG -->
-    <div id="toast" class="toast">🍌 ¡CAM-BUR-PIN-TÓN! 🎸</div>
-
-    <!-- HEADER / HERO -->
-    <header class="hero">
-        <div class="logo-container" id="logoContainer" title="Haz clic 4 veces para el easter egg...">
-            <img src="https://radio.camburpinton.com.ve/logo_radio.png" alt="Cambur Pintón" class="logo-img" id="logoImg">
+    <!-- ============================================================
+    📱 BARRA SUPERIOR - REDES SOCIALES + HORA VENEZUELA
+    ============================================================ -->
+    <div class="top-bar">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/camburpinton.fm" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@camburpintonfm" target="_blank" rel="noopener" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1CsVgaN7dh/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://kick.com/camburpintonfm" target="_blank" rel="noopener" title="Kick"><i class="fab fa-kickstarter-k"></i></a>
+            <a href="https://www.twitch.tv/camburpintonfm" target="_blank" rel="noopener" title="Twitch"><i class="fab fa-twitch"></i></a>
+            <a href="https://youtube.com/@camburpintonfm" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.threads.com/camburpinton.fm" target="_blank" rel="noopener" title="Threads"><i class="fab fa-threads"></i></a>
+            <a href="https://bsky.app/profile/camburpinton.bsky.social" target="_blank" rel="noopener" title="BlueSky"><i class="fa-solid fa-cloud"></i></a>
         </div>
-        <h1 class="station-name">Cambur Pintón</h1>
-        <p class="tagline">🎙️ La Radio Más Chevere de Venezuela 🎙️</p>
-        <button class="btn-primary" onclick="scrollToPlayer()">🎧 ¡ESCUCHAR EN VIVO!</button>
-    </header>
-
-    <!-- AHORA SUENA -->
-    <section id="ahora-suena">
-        <h2 class="section-title">🎵 Ahora Suena</h2>
-        <div class="now-playing-card">
-            <div class="album-art" id="albumArt">📻</div>
-            <div class="song-title" id="songTitle">Cargando...</div>
-            <div class="song-artist" id="songArtist">Conectando con la radio</div>
-            <div class="action-buttons">
-                <button class="btn-action" onclick="shareNowPlaying()">📤 Compartir</button>
-                <button class="btn-action" onclick="requestSong()">📋 Pedir Canción</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROGRAMACIÓN -->
-    <section id="programacion">
-        <h2 class="section-title">📅 Programación</h2>
-        <div class="schedule-grid">
-            <div class="schedule-card">
-                <div class="schedule-day">Lunes a Viernes</div>
-                <div class="schedule-show">🎵 Música Continua</div>
-                <div class="schedule-time">Todo el día</div>
-            </div>
-            <div class="schedule-card">
-                <div class="schedule-day">Sábados</div>
-                <div class="schedule-show">🎉 Especial Sabroso</div>
-                <div class="schedule-time">Próximamente</div>
-            </div>
-            <div class="schedule-card">
-                <div class="schedule-day">Domingos</div>
-                <div class="schedule-show">🍌 Domingo Pintón</div>
-                <div class="schedule-time">Próximamente</div>
-            </div>
-        </div>
-        <p style="text-align:center; margin-top:20px; color:var(--text-secondary); font-style:italic;">
-            🚧 Estamos en construcción. ¡Pronto tendremos shows en vivo con locutores!
-        </p>
-    </section>
-
-    <!-- COMUNIDAD -->
-    <section id="comunidad">
-        <h2 class="section-title">💬 Comunidad Cambur</h2>
-        <div class="community-box">
-            <p style="margin-bottom:20px;">Únete a nuestro chat de oyentes en Telegram</p>
-            <a href="https://t.me/CAMBURPINTON" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;margin-bottom:20px;">
-                💬 Unirme al Chat
-            </a>
-            <p style="font-size:13px;color:var(--text-secondary);">
-                Comparte con otros oyentes, pide canciones y entérate de todo.
-            </p>
-        </div>
-    </section>
-
-    <!-- CONECTA -->
-    <section id="conecta">
-        <h2 class="section-title">📲 Conecta con Nosotros</h2>
-        <div class="social-grid">
-            <a href="https://t.me/CAMBURPINTON" target="_blank" rel="noopener" class="social-btn">📱 Telegram</a>
-            <a href="https://instagram.com/camburpinton" target="_blank" rel="noopener" class="social-btn">📸 Instagram</a>
-            <a href="https://tiktok.com/@camburpinton" target="_blank" rel="noopener" class="social-btn">🎵 TikTok</a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 <strong>Cambur Pintón</strong> - La Radio Más Chevere de Venezuela 🍌</p>
-        <p>Hecho con ❤️ y mucho sabor tropical</p>
-    </footer>
-
-    <!-- PLAYER FLOTANTE -->
-    <div class="player-bar" id="playerBar">
-        <button class="player-btn" id="playBtn" onclick="togglePlay()" title="Reproducir / Pausar">▶</button>
-        <div class="live-indicator">
-            <div class="live-dot"></div> EN VIVO
-        </div>
-        <div class="now-playing-info">
-            <div class="now-playing-title" id="barTitle">Cambur Pintón</div>
-            <div class="now-playing-artist" id="barArtist">Escuchando</div>
-        </div>
-        <div class="strings-container" id="stringsContainer">
-            <div class="string string-1" style="height:10px"></div>
-            <div class="string string-2" style="height:10px"></div>
-            <div class="string string-3" style="height:10px"></div>
-            <div class="string string-4" style="height:10px"></div>
+        <div class="venezuela-time">
+            <span class="flag">🇻🇪</span>
+            <span>Venezuela:</span>
+            <span class="time" id="venezuelaTime">--:-- --</span>
         </div>
     </div>
 
+    <!-- ============================================================
+    📰 BARRA DE TITULARES DESLIZANTE
+    ============================================================ -->
+    <div class="ticker-bar">
+        <div class="ticker-content" id="tickerContent">
+            <span>📰 ÚLTIMA HORA</span> Cargando titulares...
+        </div>
+    </div>
+
+    <!-- ============================================================
+    🏠 HERO - DOS COLUMNAS
+    ============================================================ -->
+    <header class="hero">
+        <div class="hero-left">
+            <img src="https://radio.camburpinton.com.ve/static/uploads/background.1778449035.png" alt="Cambur Pintón" class="logo-img">
+            <h1 class="station-name">Cambur Pintón</h1>
+            <p class="tagline">🎙️ La Radio Más Chevere de Venezuela 🎙️</p>
+            <p class="hero-subtitle">🎸 Con El Cuatro Bien Afinado</p>
+            
+            <div class="hero-player">
+                <button class="player-btn" id="playBtn" onclick="togglePlay()">▶</button>
+                <div class="live-indicator">
+                    <div class="live-dot"></div> EN VIVO
+                </div>
+                <div class="now-playing-hero">
+                    <div class="np-title" id="npTitle">Cambur Pintón</div>
+                    <div class="np-artist" id="npArtist">Sintonizando</div>
+                </div>
+                <div class="strings-container" id="stringsContainer">
+                    <div class="string s1" style="height:8px"></div>
+                    <div class="string s2" style="height:8px"></div>
+                    <div class="string s3" style="height:8px"></div>
+                    <div class="string s4" style="height:8px"></div>
+                </div>
+            </div>
+            
+            <div class="listeners-badge">
+                👥 <span class="listeners-count" id="listenersCount">0</span> oyentes escuchando ahora
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <img src="https://raw.githubusercontent.com/ElShaman32/CamburPinton/main/foto.png" alt="Modelo Cambur Pintón" class="modelo-img" id="modeloImg" onerror="this.style.display='none'">
+        </div>
+    </header>
+
+    <!-- ============================================================
+    🎵 HISTORIAL DE CANCIONES - LO QUE YA MADURÓ
+    ============================================================ -->
+    <section class="history-section">
+        <h2 class="history-title">🍌 Lo Que Ya Maduró</h2>
+        <div class="history-timeline" id="historyTimeline">
+            <p class="history-placeholder">Cargando historial de canciones...</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🎵 BOTÓN PEDIR CANCIÓN
+    ============================================================ -->
+    <div class="request-section">
+        <button class="btn-request" onclick="requestSong()">
+            📋 Pedir Canción
+        </button>
+    </div>
+
+    <!-- ============================================================
+    💬 COMUNIDAD
+    ============================================================ -->
+    <section class="community-section">
+        <h2 class="section-title" style="margin-bottom:5px;">💬 Únete a la Comunidad</h2>
+        <p class="section-subtitle">El cambur se disfruta en racimo</p>
+        <div class="community-buttons">
+            <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Grupo WhatsApp
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb6k5tyI7BeB51lYSc1y" target="_blank" rel="noopener" class="btn-outline">
+                <i class="fab fa-whatsapp"></i> Canal WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    📰 NOTICIAS
+    ============================================================ -->
+    <section class="news-section">
+        <h2 class="section-title">📰 Noticias</h2>
+        <p class="section-subtitle">Automatizadas con IA para mantenerte al día</p>
+        
+        <div class="news-grid" id="newsContainer">
+            <p class="news-placeholder">🍌 Pronto tendremos noticias frescas...</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    📱 FOOTER
+    ============================================================ -->
+    <footer>
+        <strong>Leonel Sira</strong> & <strong>Yennyfer Reverol</strong>
+    </footer>
+
+    <!-- ============================================================
+    💬 BOTÓN FLOTANTE DE WHATSAPP
+    ============================================================ -->
+    <a href="https://chat.whatsapp.com/BxMHB4ApyLXEFFyuatqmMJ" target="_blank" rel="noopener" class="whatsapp-float" title="Únete al grupo de WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ============================================================
+    🧠 SCRIPTS
+    ============================================================ -->
     <script>
         // ─── CONFIGURACIÓN ───
         const STREAM_URL = 'https://radio.camburpinton.com.ve/listen/cambur_pinton/radio.mp3';
         const API_URL = 'https://radio.camburpinton.com.ve/api/nowplaying/cambur_pinton';
         const API_KEY = '0aebf59628850e87:30b9574cf088d2e1bd100a8c96e87e98';
+        const NEWS_URL = 'https://raw.githubusercontent.com/ElShaman32/SiReBa/main/noticias.json';
 
-        // ─── ELEMENTOS DOM ───
+        // ─── ELEMENTOS ───
         const playBtn = document.getElementById('playBtn');
-        const albumArt = document.getElementById('albumArt');
-        const songTitle = document.getElementById('songTitle');
-        const songArtist = document.getElementById('songArtist');
-        const barTitle = document.getElementById('barTitle');
-        const barArtist = document.getElementById('barArtist');
+        const npTitle = document.getElementById('npTitle');
+        const npArtist = document.getElementById('npArtist');
         const stringsContainer = document.getElementById('stringsContainer');
-        const toast = document.getElementById('toast');
-        const logoContainer = document.getElementById('logoContainer');
+        const listenersCount = document.getElementById('listenersCount');
+        const historyTimeline = document.getElementById('historyTimeline');
+        const pageTitle = document.getElementById('pageTitle');
+        const tickerContent = document.getElementById('tickerContent');
 
         // ─── AUDIO ───
         let audio = null;
         let isPlaying = false;
         let stringsInterval = null;
         let nowPlayingInterval = null;
+        let titleInterval = null;
+        let dotVisible = true;
 
         function togglePlay() {
             if (isPlaying) {
@@ -632,18 +934,14 @@
                     isPlaying = false;
                     updateButton();
                     stopStrings();
-                };
-                audio.onended = () => {
-                    if (isPlaying) {
-                        playAudio();
-                    }
+                    stopTitleEffect();
                 };
             }
             audio.play().then(() => {
                 isPlaying = true;
                 updateButton();
                 startStrings();
-                albumArt.classList.add('spinning');
+                startTitleEffect();
             }).catch(err => {
                 console.error('Error al reproducir:', err);
                 isPlaying = false;
@@ -660,7 +958,7 @@
             isPlaying = false;
             updateButton();
             stopStrings();
-            albumArt.classList.remove('spinning');
+            stopTitleEffect();
         }
 
         function updateButton() {
@@ -673,7 +971,24 @@
             }
         }
 
-        // ─── ANIMACIÓN DE CUERDAS ───
+        // ─── EFECTO "AL AIRE" EN LA PESTAÑA ───
+        function startTitleEffect() {
+            stopTitleEffect();
+            titleInterval = setInterval(() => {
+                dotVisible = !dotVisible;
+                pageTitle.textContent = dotVisible ? '🟢 EN VIVO - Cambur Pintón' : '🍌 Cambur Pintón';
+            }, 1500);
+        }
+
+        function stopTitleEffect() {
+            if (titleInterval) {
+                clearInterval(titleInterval);
+                titleInterval = null;
+            }
+            pageTitle.textContent = '🍌 Cambur Pintón';
+        }
+
+        // ─── CUERDAS ANIMADAS ───
         function startStrings() {
             stopStrings();
             stringsInterval = setInterval(() => {
@@ -694,131 +1009,149 @@
             strings.forEach(s => s.style.height = '5px');
         }
 
-        // ─── API: NOW PLAYING ───
+        // ─── API: NOW PLAYING + OYENTES + HISTORIAL ───
         async function fetchNowPlaying() {
             try {
                 const response = await fetch(API_URL, {
-                    headers: {
-                        'Authorization': 'Basic ' + btoa(API_KEY)
-                    }
+                    headers: { 'Authorization': 'Basic ' + btoa(API_KEY) }
                 });
                 if (!response.ok) throw new Error('API error');
                 const data = await response.json();
                 updateNowPlaying(data);
+                updateListeners(data);
+                updateHistory(data);
             } catch (err) {
                 console.error('Error fetching now playing:', err);
-                songTitle.textContent = 'Cambur Pintón';
-                songArtist.textContent = 'La Radio Más Chevere';
-                barTitle.textContent = 'Cambur Pintón';
-                barArtist.textContent = 'Sintoniza en vivo';
+                npTitle.textContent = 'Cambur Pintón';
+                npArtist.textContent = 'Sintoniza en vivo';
             }
         }
 
         function updateNowPlaying(data) {
             if (data && data.now_playing && data.now_playing.song) {
                 const song = data.now_playing.song;
-                const title = song.title || 'Música en vivo';
-                const artist = song.artist || 'Cambur Pintón';
-                songTitle.textContent = title;
-                songArtist.textContent = artist;
-                barTitle.textContent = title;
-                barArtist.textContent = artist;
-                albumArt.textContent = '🎵';
-            } else {
-                songTitle.textContent = 'Música en vivo';
-                songArtist.textContent = 'Cambur Pintón';
-                barTitle.textContent = 'Cambur Pintón';
-                barArtist.textContent = 'Escuchando';
-                albumArt.textContent = '📻';
+                npTitle.textContent = song.title || 'Música en vivo';
+                npArtist.textContent = song.artist || 'Cambur Pintón';
             }
         }
 
-        // Iniciar polling de metadatos
+        function updateListeners(data) {
+            if (data && data.listeners) {
+                listenersCount.textContent = data.listeners.unique || data.listeners.current || 0;
+            }
+        }
+
+        function updateHistory(data) {
+            if (data && data.song_history && data.song_history.length > 0) {
+                const history = data.song_history.slice(0, 5);
+                historyTimeline.innerHTML = history.map((entry, index) => {
+                    const song = entry.song;
+                    const minutesAgo = Math.floor((Date.now() / 1000 - entry.played_at) / 60);
+                    let timeText;
+                    if (minutesAgo < 1) timeText = 'Maduró hace unos segundos';
+                    else if (minutesAgo === 1) timeText = 'Maduró hace 1 minuto';
+                    else if (minutesAgo < 60) timeText = `Maduró hace ${minutesAgo} minutos`;
+                    else timeText = 'Maduró hace más de 1 hora';
+                    
+                    const emoji = index === 0 ? '🍌' : '🎵';
+                    
+                    return `
+                        <div class="history-item">
+                            <span class="history-emoji">${emoji}</span>
+                            <div class="history-card">
+                                <div class="history-song">${song.title || 'Canción desconocida'}</div>
+                                <div class="history-artist">${song.artist || 'Artista desconocido'}</div>
+                                <div class="history-time">${timeText}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
         nowPlayingInterval = setInterval(fetchNowPlaying, 15000);
         fetchNowPlaying();
 
-        // ─── EASTER EGG: 4 CLICS AL LOGO ───
-        let clickCount = 0;
-        let clickTimer = null;
-
-        logoContainer.addEventListener('click', () => {
-            clickCount++;
-            if (clickTimer) clearTimeout(clickTimer);
-            clickTimer = setTimeout(() => {
-                clickCount = 0;
-            }, 2000);
-
-            if (clickCount === 4) {
-                triggerEasterEgg();
-                clickCount = 0;
-            }
-        });
-
-        function triggerEasterEgg() {
-            // Mostrar toast
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-
-            // Vibrar strings fuerte
-            const strings = stringsContainer.querySelectorAll('.string');
-            strings.forEach(s => {
-                s.style.height = '20px';
-                s.style.transition = 'height 0.3s ease';
-            });
-            setTimeout(() => {
-                strings.forEach(s => {
-                    s.style.height = '5px';
-                    s.style.transition = 'height 0.1s';
-                });
-            }, 500);
-
-            // Agitar el logo
-            const logoImg = document.getElementById('logoImg');
-            logoImg.style.animation = 'none';
-            logoImg.offsetHeight;
-            logoImg.style.animation = 'float 0.3s ease-in-out 3';
-            setTimeout(() => {
-                logoImg.style.animation = 'float 3s ease-in-out infinite';
-            }, 900);
-
-            console.log('🍌 ¡CAM-BUR-PIN-TÓN! 🎸');
-        }
-
-        // ─── UTILIDADES ───
-        function scrollToPlayer() {
-            document.getElementById('playerBar').scrollIntoView({ behavior: 'smooth' });
-            if (!isPlaying) playAudio();
-        }
-
-        function shareNowPlaying() {
-            const title = songTitle.textContent;
-            const artist = songArtist.textContent;
-            const text = `🎵 Estoy escuchando "${title}" de ${artist} en @CamburPintonRadio 🍌 ¡La radio más chevere de Venezuela!`;
-            const url = `https://t.me/share/url?url=${encodeURIComponent('https://camburpinton.com.ve')}&text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
-        }
-
+        // ─── PEDIR CANCIÓN ───
         function requestSong() {
-            window.open('https://t.me/CAMBURPINTON', '_blank');
+            const requestUrl = 'https://radio.camburpinton.com.ve/embed/request/cambur_pinton';
+            window.open(requestUrl, '_blank', 'width=500,height=600');
         }
 
-        // ─── TELEGRAM MINI APP ───
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
+        // ─── NOTICIAS DESDE GITHUB ───
+        async function loadNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            try {
+                const response = await fetch(NEWS_URL);
+                if (!response.ok) throw new Error('No disponible');
+                const data = await response.json();
+                
+                if (data && data.noticias && data.noticias.length > 0) {
+                    const fecha = data.actualizado || 'Reciente';
+                    
+                    newsContainer.innerHTML = `
+                        <div class="news-update-time" style="grid-column:1/-1;">📅 ${fecha}</div>
+                        ${data.noticias.map(item => `
+                            <div class="news-card">
+                                <div class="news-category">${item.categoria}</div>
+                                <div class="news-title">${item.titulo}</div>
+                                <div class="news-excerpt">${item.resumen}</div>
+                            </div>
+                        `).join('')}
+                    `;
+                }
+            } catch (err) {
+                console.log('Noticias no disponibles aún.');
+            }
         }
 
-        // ─── LIMPIEZA ───
-        window.addEventListener('beforeunload', () => {
-            if (nowPlayingInterval) clearInterval(nowPlayingInterval);
-            stopStrings();
-        });
+        loadNews();
 
-        console.log('🍌 Cambur Pintón - Web lista');
-        console.log('🎸 Easter egg: 4 clics en el logo');
+        // ─── TITULARES DE VENEZUELA (RSS El Nacional vía API pública) ───
+        async function loadTickers() {
+            try {
+                // Feed RSS de El Nacional (público, no requiere API key)
+                const response = await fetch('https://rss.app/feeds/v1.1/tYTPZx6N8DfBdLsH.json');
+                if (!response.ok) throw new Error('No disponible');
+                const data = await response.json();
+                
+                if (data && data.items && data.items.length > 0) {
+                    const titulares = data.items.slice(0, 8);
+                    tickerContent.innerHTML = '<span>📰 ÚLTIMA HORA</span> ' + 
+                        titulares.map(item => 
+                            `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>`
+                        ).join(' <span style="color:#7CB342;margin:0 10px;">•</span> ');
+                }
+            } catch (err) {
+                console.log('Titulares no disponibles, intentando fuente alternativa...');
+                // Plan B: titulares de muestra
+                tickerContent.innerHTML = '<span>📰 CAMBUR PINTÓN</span> ' +
+                    '<span style="color:#A5D6A7;">Escucha la radio más chevere de Venezuela • Con El Cuatro Bien Afinado • 24/7 Música Venezolana</span>';
+            }
+        }
+
+        loadTickers();
+
+        // ─── HORA DE VENEZUELA ───
+        function updateVenezuelaTime() {
+            const now = new Date();
+            const options = {
+                timeZone: 'America/Caracas',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            document.getElementById('venezuelaTime').textContent = 
+                now.toLocaleTimeString('es-VE', options);
+        }
+
+        updateVenezuelaTime();
+        setInterval(updateVenezuelaTime, 1000);
+
+        console.log('🍌 Cambur Pintón - Web completa lista');
         console.log('📻 Stream:', STREAM_URL);
+        console.log('📰 Noticias desde GitHub');
     </script>
 </body>
 </html>
